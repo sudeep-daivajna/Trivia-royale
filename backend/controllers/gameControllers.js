@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import { Game } from "../models/game.model.js";
 import { Question } from "../models/question.model.js";
+// import startRound from "./startRound.js";
+import showQuestion from "./showQuestion.js";
 
 const joinGame = async (req, res) => {
     const { userId, username } = req.body
@@ -30,6 +32,10 @@ const joinGame = async (req, res) => {
 
             const questions = await Question.aggregate([{ $sample: { size: 5 } }])
             game.questions = questions.map((q) => q._id)
+            //call startRound
+            req.params.gameId = game._id
+            // await startRound(req, res)
+            await showQuestion(req, res)
         }
 
 

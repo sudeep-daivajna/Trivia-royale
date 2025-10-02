@@ -47,13 +47,13 @@ const nextRound = async (req, res) => {
 
         if (game.currentRound >= game.questions.length) {
             game.status = "finished"
-            game.winner = null
+            game.winner = remainingPlayers.map(player => player.userID)
 
             await game.save()
 
             return res.status(200).json({
                 message: "Game over! No mone questions!",
-                winner: null,
+                winner: game.winner,
             })
         }
 

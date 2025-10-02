@@ -45,18 +45,21 @@ const startRound = async (req,res) => {
         console.log(`Question: ${currentQuestion.question}`);
         console.log(`Options: ${currentQuestion.options.join(", ")}`);
 
-        setTimeout(async () => {
-            console.log(`⏰ Timer ended for Game ${game._id} - Moving to next round`);
-            // Simulate the request object for calling nextRound internally
-            const fakeReq = { params: { gameId: game._id.toString() } };
-            const fakeRes = {
-                status: (code) => ({
-                json: (data) => console.log(`Next Round Response [${code}]:`, data),
-                }),
-            };
+        // setTimeout(async () => {
+        //     console.log(`⏰ Timer ended for Game 2${game._id} - Moving to next round`);
+        //     // Simulate the request object for calling nextRound internally
+        //     const fakeReq = { params: { gameId: game._id.toString() } };
+        //     const fakeRes = {
+        //         status: (code) => ({
+        //         json: (data) => console.log(`Next Round Response [${code}]:`, data),
+        //         }),
+        //     };
 
-            await nextRound(fakeReq, fakeRes);
-            }, 10000);
+        //     await nextRound(fakeReq, fakeRes);
+        //     }, 20000);
+        
+        
+
 
     } catch (error) {
         res.status(500).json({
